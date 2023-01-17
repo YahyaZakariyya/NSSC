@@ -1,0 +1,29 @@
+CREATE VIEW select_notes AS SELECT n.notes_id,n.notes_title,n.notes_description,c.course_name,u.user_name,n.notes_file,n.upload_date FROM notes n JOIN courses c ON n.notes_subject=c.course_id JOIN users u ON n.author=u.user_id;
+
+CREATE VIEW select_users AS SELECT u.user_id, u.user_name, u.user_email, u.first_name, u.last_name, u.gender, ut.user_type FROM users u JOIN user_type ut ON u.user_type=ut.user_type_id;
+
+CREATE VIEW select_queries AS SELECT q.query_id, q.query, u.user_name, c.course_name FROM queries q JOIN users u ON q.inquirer=u.user_id JOIN courses c ON q.query_category=c.course_id;
+
+=>Dangerous queries
+
+//Delete course
+DELETE courses, notes, ratings, likes, comments FROM courses JOIN notes ON courses.course_id=notes.notes_subject JOIN ratings ON notes.notes_id=ratings.post JOIN comments ON notes.notes_id=comments.notes JOIN likes ON notes.notes_id=likes.notes_id WHERE courses.course_id=$course_id;
+
+//Delete notes
+DELETE notes, ratings, likes, comments, queries, responses FROM courses JOIN notes ON courses.course_id=notes.notes_subject JOIN ratings ON notes.notes_id=ratings.post JOIN comments ON notes.notes_id=comments.notes JOIN likes ON notes.notes_id=likes.notes_id JOIN queries ON queries.query_category=notes.notes_id JOIN responses ON responses.query=queries.query_id WHERE notes.notes_id={$notes_id}";
+
+
+CREATE PROCEDURE add_user(IN un VARCHAR(30),IN ue TEXT,IN fn VARCHAR(30),IN ln VARCHAR(30),IN up TEXT,IN g VARCHAR(30))
+BEGIN
+INSERT INTO users (user_name,user_email,first_name,last_name,user_password,gender) VALUES (un,ue,fn,ln,up,g);
+END
+
+CREATE PROCEDURE insert_notes(IN nt VARCHAR(100), IN nd VARCHAR (500), IN a INT, IN nf TEXT, IN ns INT, IN ud DATE)
+BEGIN
+INSERT INTO notes (notes_title, notes_description, author, notes_file, notes_subject, upload_date) VALUES (nt,nd,a,nf,ns,ud);
+END
+
+CREATE PROCEDURE update_notes(IN nt VARCHAR(100),IN nd VARCHAR(500), IN ns INT, IN ni INT)
+BEGIN
+UPDATE notes SET notes_title=nt, notes_description=nd, notes_subject=ns WHERE notes_id=ni;
+END;
