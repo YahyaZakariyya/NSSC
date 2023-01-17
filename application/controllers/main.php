@@ -209,4 +209,9 @@ class Main extends CI_Controller {
 		$this->load->view('user/temp',$result);
 	}
 
+	public function delete_notes()
+	{
+		$this->user->delete_notes($this->input->get('notes_id'));
+		redirect('main/profile');
+	}
 }

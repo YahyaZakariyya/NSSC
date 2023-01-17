@@ -203,4 +203,10 @@ class User_model extends CI_model {
         $result = $sql->result_array();
         return $result;
     }
+
+    public function delete_notes($notes_id)
+    {
+        $query = "DELETE FROM notes where notes_id={$notes_id}";
+        $this->db->query($query);
+    }
 }

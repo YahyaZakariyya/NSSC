@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#following"><?php echo $count[1]; ?></button>
+<button class="btn" data-bs-toggle="modal" data-bs-target="#following"><?php echo $count[1]; ?></button>
 
 <!-- Modal -->
 <div class="modal fade" id="following" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -31,8 +31,11 @@
             <p>Uploaded: <?php echo $note['upload_date'] ?></p>
             <div class="row">
                 <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"></p>
-                <a class="btn btn-primary" href="<?php echo base_url('main/update_notes?notes_id='.$note['notes_id']); ?>">EDIT</a>
-                <a class="btn btn-primary" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank">VIEW</a>
+                <div>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank">VIEW</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('main/update_notes?notes_id='.$note['notes_id']); ?>">EDIT</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('main/delete_notes?notes_id='.$note['notes_id']); ?>">DELETE</a>
+                </div>
                 
             </div>
         </div>
