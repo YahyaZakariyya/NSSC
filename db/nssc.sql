@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2023 at 03:57 PM
+-- Generation Time: Jan 17, 2023 at 08:28 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -33,12 +33,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_notes` (IN `nt` VARCHAR(100)
 INSERT INTO notes (notes_title, notes_description, author, notes_file, notes_subject, upload_date) VALUES (nt,nd,a,nf,ns,ud);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_query` (IN `q` TEXT, IN `qc` INT, IN `i` INT)   BEGIN
+INSERT INTO queries (query, query_category, inquirer) VALUES (q,qc,i);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_notes` (IN `nt` VARCHAR(100), IN `nd` VARCHAR(500), IN `ns` INT, IN `ni` INT)   BEGIN
 UPDATE notes SET notes_title=nt, notes_description=nd, notes_subject=ns WHERE notes_id=ni;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `validate_login` (IN `un` TEXT, IN `up` TEXT)   BEGIN
 SELECT u.user_id, u.user_name, ut.user_type FROM users u JOIN user_type ut ON u.user_type=ut.user_type_id WHERE (u.user_name=un OR u.user_email=un) AND u.user_password=up AND ut.user_type='user';
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `view_followers` (IN `ui` INT)   BEGIN
+	SELECT u.user_name FROM followers f JOIN users u ON f.follower=u.user_id WHERE f.following=ui;
 END$$
 
 DELIMITER ;
@@ -95,8 +103,9 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`follow_id`, `following`, `follower`) VALUES
-(15, 8, 2),
-(16, 2, 8);
+(16, 2, 8),
+(17, 2, 1),
+(19, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -109,6 +118,15 @@ CREATE TABLE `likes` (
   `liker` int(11) NOT NULL,
   `notes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`like_id`, `liker`, `notes_id`) VALUES
+(10, 1, 10),
+(11, 8, 9),
+(12, 8, 10);
 
 -- --------------------------------------------------------
 
@@ -132,7 +150,8 @@ CREATE TABLE `notes` (
 
 INSERT INTO `notes` (`notes_id`, `notes_title`, `notes_description`, `notes_file`, `author`, `notes_subject`, `upload_date`) VALUES
 (9, 'file upload testing', 'xyz', 'AB1673816050.pdf', 8, 1, '2023-01-15'),
-(10, 'Testing file upload', 'lorem', 'yahya_bin_zakariyya1673816727.pdf', 2, 6, '2023-01-15');
+(10, 'Testing file upload', 'how to add notes?', 'yahya_bin_zakariyya1673816727.pdf', 2, 6, '2023-01-15'),
+(13, 'how to do', 'what if you please', 'Yahya_Zakariyya1673980710.pdf', 1, 1, '2023-01-17');
 
 -- --------------------------------------------------------
 
@@ -146,6 +165,13 @@ CREATE TABLE `queries` (
   `inquirer` int(11) NOT NULL,
   `query_category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `queries`
+--
+
+INSERT INTO `queries` (`query_id`, `query`, `inquirer`, `query_category`) VALUES
+(1, 'what is 8051 microcontroller?', 8, 9);
 
 -- --------------------------------------------------------
 
@@ -244,7 +270,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `fir
 (1, 'Yahya_Zakariyya', 'yahyabinzakariyya@gmail.com', 'admin', 'Yahya', 'Zakariyya', 'm', '', 1),
 (2, 'yahya_bin_zakariyya', '29529@students.riphah.edu.pk', '112233', 'Yahya', '.', 'm', '', 2),
 (8, 'AB', 'AB@gmail.com', 'admin', 'A', 'B', 'f', '', 2),
-(10, 'oppo_user', 'mobile@user.com', 'user', 'oppo', 'a5s', 'm', '', 2);
+(10, 'oppo_user', 'mobile@user.com', 'user', 'oppo', 'a5s', 'm', '', 2),
+(11, 'abcdef', 'ghi@gmail.com', 'admin', 'abc', 'def', 'm', '', 2);
 
 -- --------------------------------------------------------
 
@@ -392,25 +419,25 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `notes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `notes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `queries`
 --
 ALTER TABLE `queries`
-  MODIFY `query_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `query_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ratings`
@@ -428,7 +455,7 @@ ALTER TABLE `responses`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_type`

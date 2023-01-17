@@ -2,7 +2,7 @@
 <section class="container col-lg-8">
 <!-- Profile Info -->
 <div class="text-center bg-secondary text-light rounded p-5">
-    <img class="rounded-circle col-lg-4 col-md-3 col-5 mt-5 border p-1 border-5 border-light" src="" alt="profile picture">
+    <!-- <img class="rounded-circle col-lg-4 col-md-3 col-5 mt-5 border p-1 border-5 border-light" src="" alt="profile picture"> -->
     <h2><?php echo $_SESSION['user_name']; ?></h2><br><br>
     <div class="row">
         <div class="col-4">
