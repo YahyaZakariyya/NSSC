@@ -6,13 +6,13 @@
     
     <h2><?php echo $user_name; ?></h2><br><br>
     <div class="row">
-        <div class="col-4">
+    <div class="col-4">
             <h5 class="m-0 p-0">Followers</h5>
-            <p><?php echo $count[0]; ?></p>
+            <?php include "followersmodel.php"; ?>
         </div>
         <div class="col-4">
             <h5 class="m-0 p-0">Following</h5>
-            <p><?php echo $count[1]; ?></p>
+            <?php include "followingmodel.php"; ?>
         </div>
         <div class="col-4">
             <h5 class="m-0 p-0">Notes</h5>
@@ -35,8 +35,22 @@
             <h5><?php echo $note['notes_title'] ?></h5>
             <p>Uploaded: <?php echo $note['upload_date'] ?></p>
             <div class="row">
-                <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"></p>
-                <a class="col-1 link-secondary" href="<?php echo base_url('main/temp/'.$note['notes_file']); ?>" target="_blank">VIEW</a>
+                <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"><?php echo $note['notes_description'] ?></p>
+                <a class="btn btn-primary" href="<?php echo base_url('main/temp/'.$note['notes_file']); ?>" target="_blank">VIEW</a>
+                <?php
+                $like = false;
+                foreach($liked_notes as $liked){
+                    if(in_array($note['notes_id'],$liked)){
+                        $like = true;
+                        break;
+                    }
+                }
+                if($like){
+                ?>
+                <a class="btn btn-outline-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">Liked</a>
+                <?php }else{ ?>
+                <a class="btn btn-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">Like</a>
+                <?php } ?>
             </div>
         </div>
     </div>

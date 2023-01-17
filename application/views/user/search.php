@@ -32,7 +32,22 @@
                 <!-- Notes View Button -->
                 <div class="text-end">
                     <a class="btn btn-sm btn-outline-primary rounded-0" href="<?php echo base_url('main/temp/'.$result['notes_file']); ?>" target="_blank">VIEW</a>
+                    <?php
+                    $like = false;
+                    foreach($liked_notes as $liked){
+                        if(in_array($result['notes_id'],$liked)){
+                            $like = true;
+                            break;
+                        }
+                    }
+                    if($like){
+                    ?>
+                    <a class="btn btn-sm btn-outline-primary rounded-0" href="<?php echo base_url('main/like/'.$result['notes_id'].'?user_id='.$result['user_id']); ?>">Liked</a>
+                    <?php }else{ ?>
+                    <a class="btn btn-sm btn-primary rounded-0" href="<?php echo base_url('main/like/'.$result['notes_id'].'?user_id='.$result['user_id']); ?>">Like</a>
+                    <?php } ?>
                 </div>
+
             </div>
         </div>
         <?php }}else{ ?>

@@ -3,24 +3,21 @@
 <!-- Profile Info -->
 <div class="text-center bg-secondary text-light rounded p-5">
     <img class="rounded-circle col-lg-4 col-md-3 col-5 mt-5 border p-1 border-5 border-light" src="" alt="profile picture">
-    
     <h2><?php echo $_SESSION['user_name']; ?></h2><br><br>
     <div class="row">
         <div class="col-4">
             <h5 class="m-0 p-0">Followers</h5>
-            <p><?php echo $count[0]; ?></p>
+            <?php include "followersmodel.php"; ?>
         </div>
         <div class="col-4">
             <h5 class="m-0 p-0">Following</h5>
-            <p><?php echo $count[1]; ?></p>
+            <?php include "followingmodel.php"; ?>
         </div>
         <div class="col-4">
             <h5 class="m-0 p-0">Notes</h5>
             <p><?php echo $count[2]; ?></p>
         </div>
     </div>
-    <!-- <button class="btn btn-light rounded-pill col-5">Follow</button> -->
-    <!-- <button class="btn btn-outline-light rounded-pill col-5">Following</button> -->
     <a class="btn btn-outline-light rounded-pill col-5" href="http://localhost/NSSC/main/add_notes">Add Notes</a>
 
 </div>
@@ -34,8 +31,9 @@
             <p>Uploaded: <?php echo $note['upload_date'] ?></p>
             <div class="row">
                 <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"></p>
-                <a class="col-1 link-secondary" href="http://localhost/NSSC/main/update_notes?notes_id=<?php echo $note['notes_id']; ?>">EDIT</a>
-                <a class="col-1 link-secondary" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank">VIEW</a>
+                <a class="btn btn-primary" href="<?php echo base_url('main/update_notes?notes_id='.$note['notes_id']); ?>">EDIT</a>
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank">VIEW</a>
+                
             </div>
         </div>
     </div>

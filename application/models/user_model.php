@@ -59,6 +59,15 @@ class User_model extends CI_model {
         return $result;
     }
 
+    public function select_note($notes_id)
+    {
+        $query = "SELECT * FROM notes WHERE notes_id={$notes_id}";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        return $result;
+    }
+
+
     public function profile_data($user_id)
     {
         $following = "SELECT COUNT(*) AS following FROM followers WHERE following={$user_id}";
@@ -93,7 +102,7 @@ class User_model extends CI_model {
     public function search_notes()
     {
         $search = $this->input->get('search');
-        $query = "SELECT n.notes_title, n.notes_description, n.notes_file, n.author AS user_id, n.upload_date, u.user_name AS author, c.course_name AS notes_subject FROM notes n JOIN users u ON n.author=u.user_id JOIN courses c ON n.notes_subject=c.course_id WHERE n.notes_title LIKE '%{$search}%' OR n.notes_description LIKE '%{$search}%'";
+        $query = "SELECT n.notes_id, n.notes_title, n.notes_description, n.notes_file, n.author, u.user_id AS user_id, n.upload_date, u.user_name AS author, c.course_name AS notes_subject FROM notes n JOIN users u ON n.author=u.user_id JOIN courses c ON n.notes_subject=c.course_id WHERE n.notes_title LIKE '%{$search}%' OR n.notes_description LIKE '%{$search}%'";
         $sql = $this->db->query($query);
         $result = $sql->result_array();
         return $result;
@@ -138,5 +147,60 @@ class User_model extends CI_model {
         }else{
             return Array();
         }
+    }
+
+    public function show_followers($user_id)
+    {
+        $query = "SELECT u.user_name FROM followers f JOIN users u ON f.follower=u.user_id WHERE f.following={$user_id}";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        return $result;
+    }
+
+    public function show_following($user_id)
+    {
+        $query = "SELECT u.user_name FROM followers f JOIN users u ON f.following=u.user_id WHERE f.follower={$user_id}";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        return $result;
+    }
+
+
+    public function check_like($notes_id)
+    {
+        $query = "SELECT * FROM likes WHERE notes_id='{$notes_id}' AND follower='{$_SESSION['user_id']}'";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        if(empty($result)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+    public function like_dislike($notes_id)
+    {
+        $query = "SELECT * FROM likes WHERE notes_id={$notes_id} AND liker={$_SESSION['user_id']}";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        if(empty($result))
+        {
+            $query = "INSERT INTO likes(notes_id, liker) VALUES ({$notes_id},{$_SESSION['user_id']})";
+            $this->db->query($query);
+        }
+        else
+        {
+            $query = "DELETE FROM likes WHERE notes_id={$notes_id} AND liker={$_SESSION['user_id']}";
+            $this->db->query($query);
+        }
+    }
+
+    public function select_liked_notes()
+    {
+        $query = "SELECT notes_id FROM likes WHERE liker={$_SESSION['user_id']}";
+        $sql = $this->db->query($query);
+        $result = $sql->result_array();
+        return $result;
     }
 }

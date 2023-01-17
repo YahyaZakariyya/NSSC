@@ -68,6 +68,8 @@ class Main extends CI_Controller {
 		if(isset($_SESSION['user_name'])){
 			$result['count'] = $this->user->profile_data($_SESSION['user_id']);
 			$result['notes'] = $this->user->select_notes($_SESSION['user_id']);
+			$result['followers'] = $this->user->show_followers($_SESSION['user_id']);
+			$result['following'] = $this->user->show_following($_SESSION['user_id']);
 			$this->load->view('user/profile', $result);
 		}else{
 			redirect('main');
@@ -83,9 +85,13 @@ class Main extends CI_Controller {
 			$result['user_name'] = $data[0]['user_name'];
 			$result['count'] = $this->user->profile_data($result['user_id']);
 			$result['notes'] = $this->user->select_notes($result['user_id']);
+			$result['followers'] = $this->user->show_followers($result['user_id']);
+			$result['following'] = $this->user->show_following($result['user_id']);
 			if(isset($_SESSION['user_name'])){
-				$result['follow'] = $this->user->check_follow($user_id);			
+				$result['follow'] = $this->user->check_follow($user_id);
+				$result['liked_notes'] = $this->user->select_liked_notes();
 			}else{
+				$result['liked_notes'] = Array();
 				$result['follow'] = false;
 			}
 			
@@ -115,12 +121,12 @@ class Main extends CI_Controller {
 			if (!$this->upload->do_upload('notes_file'))
 			{
 				$error = array('error' => $this->upload->display_errors());
-				redirect('addnotes',$error);
+				redirect('main/addnotes',$error);
 			}
 			else
 			{
 				$this->user->insert_notes($temp_name);
-				redirect('profile');
+				redirect('main/profile');
 			}		
 		}
 		else
@@ -131,7 +137,7 @@ class Main extends CI_Controller {
 
 	public function update_notes()
 	{
-		$result['notes'] = $this->user->select_notes();
+		$result['notes'] = $this->user->select_note($this->input->get('notes_id'));
 		$result['options'] = $this->user->select_courses();
 		$this->load->view('user/addnotes',$result);
 	}
@@ -146,6 +152,12 @@ class Main extends CI_Controller {
 	{
 		if($this->input->get('search')!==NULL AND $this->input->get('search')!=='')
 		{
+			if(isset($_SESSION['user_name'])){
+				$result['liked_notes'] = $this->user->select_liked_notes();
+			}
+			else{
+				$result['liked_notes'] = Array();
+			}
 			$result['search'] = $this->user->search_notes();
 			$this->load->view('user/search',$result);
 		}
@@ -160,6 +172,17 @@ class Main extends CI_Controller {
 		if(isset($_SESSION['user_name'])){
 			$this->user->follow_unfollow($user_id);
 			redirect('main/view_profile/'.$user_id);
+		}else{
+			redirect('main/login');
+		}
+	}
+
+	public function like($notes_id)
+	{
+		if(isset($_SESSION['user_name'])){
+			$this->user->like_dislike($notes_id);
+			redirect('main/view_profile/'.$this->input->get('user_id'));
+			return;
 		}else{
 			redirect('main/login');
 		}
