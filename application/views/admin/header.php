@@ -27,7 +27,7 @@ if(!isset($_SESSION['user_name']))
                 <div class="">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="<?php echo base_url('admin/'); ?>">USERS</a>
+                            <a class="nav-link" aria-current="page" href="<?php echo base_url('admin/'); ?>">USERS</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo base_url('admin/view_notes'); ?>">NOTES</a>

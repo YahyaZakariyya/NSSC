@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 16, 2023 at 05:57 PM
+-- Generation Time: Jan 17, 2023 at 03:57 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -73,8 +73,10 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`course_id`, `course_name`) VALUES
 (1, 'Database Systems'),
-(3, 'Object Oriented Programming'),
-(6, 'Intro to Hadith and Seerah');
+(6, 'Intro to Hadith and Seerah'),
+(7, 'Web Programming'),
+(8, 'Software Engineering'),
+(9, 'COAL');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,8 @@ CREATE TABLE `followers` (
 --
 
 INSERT INTO `followers` (`follow_id`, `following`, `follower`) VALUES
-(9, 2, 8);
+(15, 8, 2),
+(16, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -128,12 +131,8 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`notes_id`, `notes_title`, `notes_description`, `notes_file`, `author`, `notes_subject`, `upload_date`) VALUES
-(4, 'Entity', 'this is how entity relationship diagram works', '', 2, 1, '2023-01-14'),
-(5, 'Abc', 'def', '', 2, 1, '2023-01-14'),
-(7, 'night', 'man', '', 2, 1, '2023-01-14'),
 (9, 'file upload testing', 'xyz', 'AB1673816050.pdf', 8, 1, '2023-01-15'),
-(10, 'Testing file upload', 'lorem', 'yahya_bin_zakariyya1673816727.pdf', 2, 6, '2023-01-15'),
-(11, 'testing', 'xyzyyzy', 'yahya_bin_zakariyya1673818025.pdf', 2, 3, '2023-01-15');
+(10, 'Testing file upload', 'lorem', 'yahya_bin_zakariyya1673816727.pdf', 2, 6, '2023-01-15');
 
 -- --------------------------------------------------------
 
@@ -387,13 +386,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `followers`
 --
 ALTER TABLE `followers`
-  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `follow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `likes`
