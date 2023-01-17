@@ -10,12 +10,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+      <div class="d-grid gap-2">
         <?php if(!empty($following)){
             foreach($following as $follow){
                 foreach($follow as $user){
         ?>
-        <div class="bg-dark"><?php echo $user; ?></div><br>
+        <button type="button" class="btn btn-secondary"><?php echo $user; ?></button>
         <?php }}} ?>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

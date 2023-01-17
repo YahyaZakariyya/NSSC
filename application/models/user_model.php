@@ -152,6 +152,7 @@ class User_model extends CI_model {
     public function show_followers($user_id)
     {
         $query = "SELECT u.user_name FROM followers f JOIN users u ON f.follower=u.user_id WHERE f.following={$user_id}";
+        // $query = "CALL view_followers('{$user_id}')";
         $sql = $this->db->query($query);
         $result = $sql->result_array();
         return $result;
@@ -207,6 +208,15 @@ class User_model extends CI_model {
     public function delete_notes($notes_id)
     {
         $query = "DELETE FROM notes where notes_id={$notes_id}";
+        $this->db->query($query);
+    }
+
+    public function insert_query()
+    {
+        $query = $this->input->post('query');
+        $inquirer = $_SESSION['user_id'];
+        $query_category = $this->input->post('query_catagory');
+        $query = "CALL insert_query('{$query}','{$query_category}','{$inquirer}')";
         $this->db->query($query);
     }
 }

@@ -27,15 +27,27 @@
 
 </div>
 
-<!-- Card Sample-1 -->
+<div class="card text-center">
+<div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+    <li class="nav-item">
+        <button class="nav-link active" aria-current="true" href="#">Notes</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" href="#">Queries</button>
+    </li>
+    </ul>
+</div>
+<div class="card-body">
+<!-- Card -->
 <table class="table">
     <?php foreach($notes as $note){ ?>
-    <div class="shadow-sm row mx-1 my-3 border rounded border-3 border-secondary ">
-        <div class="p-4 bg-light" >
-            <h5><?php echo $note['notes_title'] ?></h5>
-            <p>Uploaded: <?php echo $note['upload_date'] ?></p>
-            <div class="row">
-                <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"><?php echo $note['notes_description'] ?></p>
+    <div class="card">
+        <h5 class="card-header"><?php echo $note['notes_title'] ?></h5>
+        <div class="card-body">
+            <!-- <h5 class="card-title">Special title treatment</h5> -->
+            <p class="card-text"><?php echo $note['notes_description'] ?></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
                 <a class="btn btn-primary" href="<?php echo base_url('main/temp/'.$note['notes_file']); ?>" target="_blank">VIEW</a>
                 <?php
                 $like = false;
@@ -47,14 +59,17 @@
                 }
                 if($like){
                 ?>
-                <a class="btn btn-outline-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">Liked</a>
+                <a class="btn btn-outline-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">LIKED</a>
                 <?php }else{ ?>
-                <a class="btn btn-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">Like</a>
+                <a class="btn btn-primary" href="<?php echo base_url('main/like/'.$note['notes_id'].'?user_id='.$user_id); ?>">LIKE</a>
                 <?php } ?>
             </div>
         </div>
     </div>
     <?php } ?>
+</table>
+</div>
+</div>
 </table>
 </section>
 <?php include "footer.php"; ?>

@@ -18,29 +18,42 @@
             <p><?php echo $count[2]; ?></p>
         </div>
     </div>
-    <a class="btn btn-outline-light rounded-pill col-5" href="http://localhost/NSSC/main/add_notes">Add Notes</a>
+    <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/add_notes'); ?>">Add Notes</a>
+    <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/ask_query'); ?>">Ask Query</a>
 
 </div>
 
-<!-- Card Sample-1 -->
+<div class="card text-center">
+<div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+    <li class="nav-item">
+        <button class="nav-link active" aria-current="true" href="#">Notes</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" href="#">Queries</button>
+    </li>
+    </ul>
+</div>
+<div class="card-body">
+<!-- Card -->
 <table class="table">
     <?php foreach($notes as $note){ ?>
-    <div class="shadow-sm row mx-1 my-3 border rounded border-3 border-secondary ">
-        <div class="p-4 bg-light" >
-            <h5><?php echo $note['notes_title'] ?></h5>
-            <p>Uploaded: <?php echo $note['upload_date'] ?></p>
-            <div class="row">
-                <p class="text-nowrap col-md-11 col-10 m-0" style="overflow: hidden; text-overflow: ellipsis;"></p>
-                <div>
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank">VIEW</a>
-                    <a class="btn btn-primary" href="<?php echo base_url('main/update_notes?notes_id='.$note['notes_id']); ?>">EDIT</a>
-                    <a class="btn btn-primary" href="<?php echo base_url('main/delete_notes?notes_id='.$note['notes_id']); ?>">DELETE</a>
-                </div>
-                
+    <div class="card">
+        <h5 class="card-header"><?php echo $note['notes_title'] ?></h5>
+        <div class="card-body">
+            <!-- <h5 class="card-title">Special title treatment</h5> -->
+            <p class="card-text"><?php echo $note['notes_description'] ?></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="btn btn-success" href="<?php echo base_url(); ?>assets/your_pdf_file.pdf" target="_blank"><i class="fa-solid fa-download"></i></a>
+                <a class="btn btn-dark" href="<?php echo base_url('main/update_notes?notes_id='.$note['notes_id']); ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a class="btn btn-danger" href="<?php echo base_url('main/delete_notes?notes_id='.$note['notes_id']); ?>"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
     </div>
     <?php } ?>
 </table>
+</div>
+</div>
+
 </section>
 <?php include "footer.php"; ?>

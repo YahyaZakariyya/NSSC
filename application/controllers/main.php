@@ -214,4 +214,24 @@ class Main extends CI_Controller {
 		$this->user->delete_notes($this->input->get('notes_id'));
 		redirect('main/profile');
 	}
+
+	public function ask_query()
+	{
+		$result['options'] = $this->user->select_courses();
+		$this->load->view('user/askqueries',$result);
+	}
+
+	public function insert_query()
+	{
+		if(isset($_POST['ask_query']))
+		{
+			$this->user->insert_query();
+			redirect('main/profile');
+		}
+		else
+		{
+			redirect('main');
+		}
+	}
+
 }
