@@ -6,14 +6,14 @@ if(isset($_GET['notes_id'])){
 	$description = $notes['notes_description'];
 	$course = $notes['notes_subject'];
 	$button_value = "UPDATE";
-	$form_action = "http://localhost/NSSC/main/modify_notes/".$notes['notes_id'];
+	$form_action = base_url('main/modify_notes/'.$notes['notes_id']);
 }
 else{
 	$title = "";
 	$description = "";
 	$course = "";
 	$button_value = "PUBLISH";
-	$form_action = "http://localhost/NSSC/main/insert_notes";
+	$form_action = base_url('main/insert_notes');
 }
 ?>
 <!-- Add/Update Notes Form -->

@@ -24,7 +24,20 @@ class Main extends CI_Controller {
 	{
 		if(isset($_POST['signup_button']))
 		{
-			$this->user->signup();
+			if($this->user->signup())
+			{
+				$result = $this->user->login();
+				$this->load->library('session');
+				foreach($result[0] as $key => $value)
+				{
+					$this->session->set_userdata($key,$value);
+				}
+				redirect('main');
+			}
+			else
+			{
+				redirect('main/signup?alreadyexists');
+			}
 		}
 		else
 		{

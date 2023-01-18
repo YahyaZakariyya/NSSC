@@ -18,7 +18,7 @@
         <nav class="navbar container-xl">
             <div class="nav nav-fill container-fluid">
                 <!-- Navbar brand i.e. logo -->
-                <a class="navbar-brand" href="http://localhost/NSSC/main/">NSSC</a>
+                <a class="navbar-brand" href="<?php echo base_url('main'); ?>">NSSC</a>
                 <!-- Search Bar and Button -->
                 <?php //if($_SERVER['PATH_INFO']=='/main/search'){ ?>
                 <div class="col-3 col-sm-4 col-md-6">
@@ -37,16 +37,16 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $_SESSION['user_name']; ?></button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" type="button" href="http://localhost/NSSC/main/profile">Profile</a></li>
-                        <li><a class="dropdown-item" type="button" href="http://localhost/NSSC/main/logout">Logout</a></li>
+                        <li><a class="dropdown-item" type="button" href="<?php echo base_url('main/profile'); ?>">Profile</a></li>
+                        <li><a class="dropdown-item" type="button" href="<?php echo base_url('main/logout'); ?>">Logout</a></li>
                         </ul>
                     </div>
                 <?php
                     }else{
                 ?>
                     <!-- When not logged in -->
-                    <a class="btn btn-primary rounded-0 mx-1" href="http://localhost/NSSC/main/login">LOGIN</a>
-                    <a class="btn btn-outline-primary rounded-0" href="http://localhost/NSSC/main/signup">SIGN UP</a>
+                    <a class="btn btn-primary rounded-0 mx-1" href="<?php echo base_url('main/login'); ?>">LOGIN</a>
+                    <a class="btn btn-outline-primary rounded-0" href="<?php echo base_url('main/signup'); ?>">SIGN UP</a>
                 <?php } ?>
                 </div>
             </div>

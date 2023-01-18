@@ -5,7 +5,8 @@ class Admin_model extends CI_model {
 
     public function validate_login()
     {
-        $query = "SELECT u.user_id, u.user_name, ut.user_type FROM users u JOIN user_type ut ON u.user_type=ut.user_type_id WHERE (u.user_name='{$this->input->post('user_name')}' OR u.user_email='{$this->input->post('user_name')}') AND u.user_password='{$this->input->post('user_password')}' AND ut.user_type='admin'";
+        $user_password = md5($this->input->post('user_password'));
+        $query = "SELECT u.user_id, u.user_name, ut.user_type FROM users u JOIN user_type ut ON u.user_type=ut.user_type_id WHERE (u.user_name='{$this->input->post('user_name')}' OR u.user_email='{$this->input->post('user_name')}') AND u.user_password='{$user_password}' AND ut.user_type='admin'";
         $sql = $this->db->query($query);
         if($sql->num_rows()>0){
             $result = $sql->result_array();
@@ -83,12 +84,13 @@ class Admin_model extends CI_model {
 
     public function add_user()
     {
+        $user_password = md5($this->input->post('user_password'));
         $check_query = "SELECT user_name, user_email FROM users WHERE user_name='{$this->input->post('user_name')}' OR user_email='{$this->input->post('user_email')}'";
         $check_sql = $this->db->query($check_query);
         $check_result = $check_sql->result_array();
         if(empty($check_result)){
             print_r($_POST);
-            $query = "INSERT INTO users (user_name,user_email,first_name,last_name,user_password,gender,user_type) VALUES ('{$this->input->post('user_name')}','{$this->input->post('user_email')}','{$this->input->post('first_name')}','{$this->input->post('last_name')}','{$this->input->post('user_password')}','{$this->input->post('gender')}',{$this->input->post('user_type')})";
+            $query = "INSERT INTO users (user_name,user_email,first_name,last_name,user_password,gender,user_type) VALUES ('{$this->input->post('user_name')}','{$this->input->post('user_email')}','{$this->input->post('first_name')}','{$this->input->post('last_name')}','{$user_password}','{$this->input->post('gender')}',{$this->input->post('user_type')})";
             $this->db->query($query);
             return true;
         }else{

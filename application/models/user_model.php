@@ -6,7 +6,7 @@ class User_model extends CI_model {
     public function login()
     {
         $user_name = $this->input->post('user_name');
-        $user_password = $this->input->post('user_password');
+        $user_password = md5($this->input->post('user_password'));
         $query = "CALL validate_login('{$user_name}','{$user_password}')";
         $sql = $this->db->query($query);
         if($sql->num_rows()>0){
@@ -23,7 +23,8 @@ class User_model extends CI_model {
         $user_email = $this->input->post('user_email');
         $first_name = $this->input->post('first_name');
         $last_name = $this->input->post('last_name');
-        $user_password = $this->input->post('user_password');
+        $user_password = md5($this->input->post('user_password'));
+        // $user_password = $this->input->post('user_password');
         $gender = $this->input->post('gender');
         $check_query = "SELECT user_name, user_email FROM users WHERE user_name='{$user_name}' OR user_email='{$user_email}'";
         $check_sql = $this->db->query($check_query);
@@ -31,11 +32,9 @@ class User_model extends CI_model {
         if(empty($check_result)){
             $query = "CALL add_user('{$user_name}','{$user_email}','{$first_name}','{$last_name}','{$user_password}','{$gender}')";
             $this->db->query($query);
-            echo "Data inserted";
-            // header('Location: '.base_url());
+            return true;
         }else{
-            echo "Already exists";
-            // header("Location: ".base_url('add?user_id&error=true'));
+            return false;
         }
     }
 

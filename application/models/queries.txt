@@ -28,12 +28,12 @@ BEGIN
     UPDATE notes SET notes_title=nt, notes_description=nd, notes_subject=ns WHERE notes_id=ni;
 END;
 
-CREATE PROCEDURE view_followers(IN ui INT)
-BEGIN
-	SELECT u.user_name FROM followers f JOIN users u ON f.follower=u.user_id WHERE f.following=ui;
-END
-
 CREATE PROCEDURE insert_query(IN q TEXT, IN qc INT, IN i INT)
 BEGIN
     INSERT INTO queries (query, query_category, inquirer) VALUES (q,qc,i);
+END
+
+CREATE PROCEDURE validate_login (IN un TEXT, IN up TEXT)
+BEGIN
+SELECT u.user_id, u.user_name, ut.user_type FROM users u JOIN user_type ut ON u.user_type=ut.user_type_id WHERE (u.user_name=un OR u.user_email=un) AND u.user_password=up AND ut.user_type='user';
 END
