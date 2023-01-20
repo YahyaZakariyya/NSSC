@@ -1,7 +1,7 @@
 <?php include "header.php"; ?>
 <section class="container col-lg-8">
 <!-- Profile Info -->
-<div class="text-center bg-secondary text-light rounded p-5">
+<div class="text-center text-light p-5" style="background-color: rgba(0,0,0,0.5)">
     <!-- <img class="rounded-circle col-lg-4 col-md-3 col-5 mt-5 border p-1 border-5 border-light" src="../images/ProfilePicture.jpg" alt="profile picture"> -->
     
     <h2><?php echo $user_name; ?></h2><br><br>

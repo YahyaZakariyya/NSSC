@@ -10,13 +10,11 @@ class Main extends CI_Controller {
 
 	public function login()
 	{
-		$this->load->helper('html');
 		$this->load->view('user/login');
 	}
 
 	public function signup()
 	{
-		$this->load->helper('html');
 		$this->load->view('user/signup');
 	}
 

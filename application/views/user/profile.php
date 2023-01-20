@@ -1,7 +1,7 @@
 <?php include "header.php"; ?>
 <section class="container col-lg-8">
 <!-- Profile Info -->
-<div class="text-center bg-secondary text-light rounded p-5">
+<div class="text-center text-light p-5" style="background-color: rgba(0,0,0,0.5)">
     <!-- <img class="rounded-circle col-lg-4 col-md-3 col-5 mt-5 border p-1 border-5 border-light" src="" alt="profile picture"> -->
     <h2><?php echo $_SESSION['user_name']; ?></h2><br><br>
     <div class="row">
@@ -20,7 +20,6 @@
     </div>
     <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/add_notes'); ?>">Add Notes</a>
     <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/ask_query'); ?>">Ask Query</a>
-
 </div>
 
 <div class="card text-center">

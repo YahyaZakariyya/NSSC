@@ -1,7 +1,11 @@
 </section>
+</section>
+</section>
+<?php if(!in_array($this->router->fetch_method(), ['login','signup'])){ ?>
 <!-- Footer -->
-<footer class="py-2 bg-info text-light text-center">
+<footer class="py-2 bg-dark text-light text-center">
     <span class="">&copy Copyright 2023 Notes | Powered by <a href="">NSSC</a></span>
 </footer>
+<?php } ?>
 </body>
 </html>
