@@ -17,12 +17,13 @@
 <div class="d-flex flex-column vh-100">
     <?php if(!in_array($this->router->fetch_method(), ['login','signup'])){ ?>
     <!-- Header -->
-    <header class="sticky-top shadow border-bottom navbar-color">
+    <header class="sticky-top shadow navbar-color">
         <!-- Navbar -->
         <nav class="navbar container-xl">
             <div class="nav nav-fill container-fluid">
                 <!-- Navbar brand i.e. logo -->
-                <a class="navbar-brand" href="<?php echo base_url('main'); ?>">NSSC</a>
+                <a class="btn navbar-brand text-primary btn-light" href="<?php echo base_url('main'); ?>">
+                <img src="https://img.icons8.com/nolan/96/note.png" width="30px"/></a>
                 <!-- Search Bar and Button -->
                 <?php 
                 if($this->router->fetch_method() != 'index') {

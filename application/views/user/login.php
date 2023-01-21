@@ -1,24 +1,18 @@
 <?php include "header.php"; ?>
 <div class="row justify-content-center">
-    <div class="cont">
-    <div class="form">
-        <h2>Login Form</h2>
-        <form action="<?php echo base_url('main/login_button'); ?>" method="POST">
-        <div class="input__box">
-            <input type="text" name="user_name" placeholder="Username" required />
-        </div>
-        <div class="input__box">
-            <input type="password" name="user_password" placeholder="Password" required />
-        </div>
-        <div class="input__box">
-            <input type="submit" name="login_button" value="Login" />
-        </div>
-        <!-- <p class="forget">Forgot Password? <a href="#">Click Here</a></p> -->
-        <p class="forget">
-            Don't have an account? <a href="<?php echo base_url('main/signup'); ?>">Sign-Up</a>
-        </p>
-        </form>
+<div class="cont">
+<form class="form" action="<?php echo base_url('main/login_button'); ?>" method="POST">
+    <h2>Login Form</h2>
+    <div class="mb-2">
+        <label for="user_name" class="form-label">Username or Email</label>
+        <input type="text" name="user_name" class="form-control" required/>
+    <div class="mb-2">
+        <label for="user_password" class="form-label">Password</label>
+        <input type="password" name="user_password" class="form-control" required/>
     </div>
-    </div>
+    <p>Don't have an account? <a href="<?php echo base_url('main/signup'); ?>">Sign-Up</a></p>
+    <input class="btn btn-light rounded-0" type="submit" name="login_button" value="LOGIN"></input>
+</form>
+</div>
 </div>
 <?php include "footer.php"; ?>

@@ -27,15 +27,15 @@
 
 </div>
 
-<div class="card text-center">
+<div class="card text-center  rounded-0">
 <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
     <li class="nav-item">
         <button class="nav-link active" aria-current="true" href="#">Notes</button>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <button class="nav-link" href="#">Queries</button>
-    </li>
+    </li> -->
     </ul>
 </div>
 <div class="card-body">

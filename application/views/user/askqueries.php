@@ -1,16 +1,17 @@
 <?php include "header.php"; ?>
 
 <!-- Add Query Form -->
-<div class="container">
-<form action="<?php echo base_url('main/insert_query') ?>" method="POST">
+<div class="row justify-content-center">
+<div class="cont">
+<form class="form" action="<?php echo base_url('main/insert_query') ?>" method="POST">
 	<!-- Query Input Field -->
-
-    <div class="form-floating">
+	<h2>Ask Query</h2>
+    <div class="form-floating  mb-3">
         <textarea class="form-control" placeholder="Input a query here" id="floatingTextarea2" style="height: 100px" name="query"></textarea>
         <label for="floatingTextarea2">Query</label>
     </div>
 	<!-- Query Catagory Input Field -->
-    <div class="form-floating">
+    <div class="form-floating  mb-3">
 		<select class="form-select" name="query_catagory">
 			<?php
 			foreach($options as $values){
@@ -29,7 +30,8 @@
 		<label for="query_catagory">Catagory</label>
 	</div>
 	<!-- Submit Button -->
-	<input type="submit" name="ask_query" class="btn btn-success" value="Ask"></input>
+	<input type="submit" name="ask_query" class="btn btn-light rounded-5" value="ASK"></input>
 </form>
+</div>
 </div>
 <?php include "footer.php"; ?>

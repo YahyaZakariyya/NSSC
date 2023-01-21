@@ -19,18 +19,18 @@
         </div>
     </div>
     <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/add_notes'); ?>">Add Notes</a>
-    <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/ask_query'); ?>">Ask Query</a>
+    <!-- <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/ask_query'); ?>">Ask Query</a> -->
 </div>
 
-<div class="card text-center">
+<div class="card text-center rounded-0">
 <div class="card-header">
     <ul class="nav nav-tabs card-header-tabs">
     <li class="nav-item">
         <button class="nav-link active" aria-current="true" href="#">Notes</button>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <button class="nav-link" href="#">Queries</button>
-    </li>
+    </li> -->
     </ul>
 </div>
 <div class="card-body">
