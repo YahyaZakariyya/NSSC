@@ -63,4 +63,4 @@
 	<div class="colour"></div>
 	<div class="colour"></div>
 	<div class="colour"></div>
-    <section class="container-xl flex-grow-1" style="z-index: 0">
+    <section class="container-xl flex-grow-1 z-1">

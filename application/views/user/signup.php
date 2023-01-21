@@ -1,5 +1,6 @@
 <?php include "header.php"; ?>
-<div class="cont">
+<div class="row">
+<div class="cont col-12 col-md-6">
 <form class="form" action="<?php echo base_url('main/signup_button'); ?>" method="POST">
 	<h2>Sign-Up Form</h2>
 	<!-- First Name Input Field -->
@@ -43,6 +44,7 @@
 	</p>
 	<input type="submit" name="signup_button" class="btn btn-light rounded-5" value="Sign Up"></input>
 </form>			
+</div>
 </div>
 <!-- </section> -->
 <?php include "footer.php"; ?>

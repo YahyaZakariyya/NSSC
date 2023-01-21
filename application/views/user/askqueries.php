@@ -1,7 +1,8 @@
 <?php include "header.php"; ?>
 
 <!-- Add Query Form -->
-<div class="cont">
+<div class="row">
+<div class="cont col-12 col-md-6">
 <form class="form" action="<?php echo base_url('main/insert_query') ?>" method="POST">
 	<!-- Query Input Field -->
 	<h2>Ask Query</h2>
@@ -31,5 +32,6 @@
 	<!-- Submit Button -->
 	<input type="submit" name="ask_query" class="btn btn-light rounded-5" value="ASK"></input>
 </form>
+</div>
 </div>
 <?php include "footer.php"; ?>

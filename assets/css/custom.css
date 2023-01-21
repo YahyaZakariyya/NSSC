@@ -24,22 +24,22 @@
 }
   
 .sec .colour {
-    min-height: 80vh;
+    /* min-height: 80vh; */
     position: absolute;
     filter: blur(150px);
 }
   
 .sec .colour:nth-child(1) {
-    top: -350px;
-    width: 600px;
-    height: 600px;
+    top: 0px;
+    width: 50vw;
+    height: 100vh;
     background: #bf4ad4;
 }
   
 .sec .colour:nth-child(2) {
     left: 100px;
-    width: 500px;
-    height: 500px;
+    width: 20vw;
+    height: 100vh;
     /* bottom: -150px; */
     background: #ffa500;
 }
@@ -47,8 +47,8 @@
 .sec .colour:nth-child(3) {
     right: 100px;
     bottom: 50px;
-    width: 300px;
-    height: 300px;
+    width: 20vw;
+    height: 100vh;
     background: #2b67f3;
 }
   
@@ -56,16 +56,10 @@
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 400px;
-    /* min-height: 400px; */
-    position: relative;
     border-radius: 10px;
-    backdrop-filter: blur(5px);
     background: rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
   
 .form {

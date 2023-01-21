@@ -1,5 +1,6 @@
 <?php include "header.php"; ?>
-<div class="cont">
+<div class="row">
+<div class="cont col-12 col-md-6">
 <form class="form" action="<?php echo base_url('main/login_button'); ?>" method="POST">
     <h2>Login Form</h2>
     <div class="form-floating mb-3">
@@ -13,5 +14,6 @@
     <p>Don't have an account? <a href="<?php echo base_url('main/signup'); ?>">Sign-Up</a></p>
     <input class="btn btn-light rounded-5" type="submit" name="login_button" value="LOGIN"></input>
 </form>
+</div>
 </div>
 <?php include "footer.php"; ?>
