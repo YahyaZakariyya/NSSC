@@ -6,8 +6,15 @@
 }
 
 .navbar-color {
-    /* background: linear-gradient(to right, black 0%, #bf4ad4 50%, #2b67f3 90%); */
     background: linear-gradient(to right, #ffa500 0%, #bf4ad4 50%, #2b67f3 90%);
+}
+
+.title-color {
+    background: linear-gradient(to right, #2b67f3 0%, #bf4ad4 50%);
+}
+
+.title-clr{
+    background-color: green;
 }
 
 .sec {
@@ -46,10 +53,11 @@
 }
   
 .cont {
+    margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 400px;
-    min-height: 400px;
+    /* min-height: 400px; */
     position: relative;
     border-radius: 10px;
     backdrop-filter: blur(5px);

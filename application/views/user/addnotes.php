@@ -19,7 +19,6 @@ else{
 }
 ?>
 <!-- Add/Update Notes Form -->
-<div class="row justify-content-center">
 <div class="cont">
 <form class="form" action="<?php echo $form_action ?>" method="POST" enctype="multipart/form-data">
 	<h2><?php echo $label; ?></h2>
@@ -62,6 +61,5 @@ else{
 	<!-- Submit Button -->
 	<input class="btn btn-light rounded-5" type="submit" name="insert_notes" value="<?php echo $button_value; ?>"></input>
 </form>
-</div>
 </div>
 <?php include "footer.php"; ?>

@@ -15,7 +15,7 @@
         </div>
         <div class="col-4">
             <h5 class="m-0 p-0">Notes</h5>
-            <p><?php echo $count[2]; ?></p>
+            <button class="btn text-light"><?php echo $count[2]; ?></button>
         </div>
     </div>
     <a class="btn btn-outline-light rounded-pill col-5" href="<?php echo base_url('main/add_notes'); ?>">Add Notes</a>

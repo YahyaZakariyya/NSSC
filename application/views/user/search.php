@@ -16,22 +16,22 @@
          ?>
         <div class="bg-light shadow-sm rounded-2 m-2">
             <!-- Card/Notes Heading -->
-            <h6 class="p-2 bg-black rounded-top-2 m-0">
+            <h6 class="p-2 title-color text-light rounded-top-2 m-0">
                 <?php echo $result['notes_title']; ?>
             </h6>
             <!-- Card/Notes Body -->
             <div class="p-2 pt-0">
                 <!-- Notes Info -->
                 <div>
-                    <button class="btn col"><i class="fa-sharp fa-solid fa-note-sticky"></i>  <?php echo $result['notes_subject']; ?></button>
-                    <a class="btn col btn-light" href="<?php echo base_url('main/view_profile/'.$result['user_id']); ?>"><i class="fa-solid fa-user"></i>  <?php echo $result['author']; ?></a>
                     <button class="btn col"><i class="fa-solid fa-calendar-days"></i>  <?php echo $result['upload_date']; ?></button>
+                    <a class="btn col btn-light" href="<?php echo base_url('main/view_profile/'.$result['user_id']); ?>"><i class="fa-solid fa-user"></i>  <?php echo $result['author']; ?></a>
+                    <button class="btn col"><i class="fa-sharp fa-solid fa-note-sticky"></i>  <?php echo $result['notes_subject']; ?></button>
                 </div>
                 <!-- Notes Description -->
                 <p><?php echo $result['notes_description']; ?></p>
                 <!-- Notes View Button -->
                 <div class="text-end">
-                    <a class="btn btn-outline-dark" href="<?php echo base_url('main/temp/'.$result['notes_file']); ?>" target="_blank">VIEW</a>
+                    <a class="btn btn-primary" href="<?php echo base_url('main/temp/'.$result['notes_file']); ?>" target="_blank">VIEW</a>
                     <?php
                     // $like = false;
                     // foreach($liked_notes as $liked){
